@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs y Editores
+.vscode/
+.idea/
+*.swp
+
+# Logs y variables de entorno
+*.log
+*.env
+
+# Archivos temporales de bases de datos
+*.tmp
