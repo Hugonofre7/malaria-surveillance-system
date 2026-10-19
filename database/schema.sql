@@ -1,12 +1,12 @@
 -- =========================================
--- ESQUEMA DE BASE DE DATOS: PALUDISMO
--- Sistema de Información Epidemiológica
+-- DATABASE SCHEMA: MALARIA SURVEILLANCE
+-- Epidemiological Information System
 -- =========================================
 
 CREATE DATABASE IF NOT EXISTS paludismo_db;
 USE paludismo_db;
 
--- 1. LOCALIDAD
+-- 1. LOCALITY
 CREATE TABLE localidad (
     id_localidad INT AUTO_INCREMENT PRIMARY KEY,
     nombre_localidad VARCHAR(100) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE localidad (
     CONSTRAINT uk_localidad_ubicacion UNIQUE (nombre_localidad, municipio, estado)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 2. VIVIENDA
+-- 2. DWELLING
 CREATE TABLE vivienda (
     id_vivienda INT AUTO_INCREMENT PRIMARY KEY,
     direccion VARCHAR(150) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE vivienda (
         ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 3. PACIENTE
+-- 3. PATIENT
 CREATE TABLE paciente (
     id_paciente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE paciente (
         ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 4. CASO
+-- 4. EPIDEMIOLOGICAL CASE
 CREATE TABLE caso (
     id_caso INT AUTO_INCREMENT PRIMARY KEY,
     fecha_diagnostico DATE NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE caso (
         ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 5. LABORATORIO
+-- 5. LABORATORY DIAGNOSTIC
 CREATE TABLE laboratorio (
     id_laboratorio INT AUTO_INCREMENT PRIMARY KEY,
     tipo_prueba ENUM('GOTA_GRUESA', 'PRUEBA_RAPIDA') NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE laboratorio (
         ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 6. BRIGADA
+-- 6. FIELD BRIGADE
 CREATE TABLE brigada (
     id_brigada INT AUTO_INCREMENT PRIMARY KEY,
     nombre_brigada VARCHAR(100) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE brigada (
     CONSTRAINT uk_brigada_nombre UNIQUE (nombre_brigada)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 7. INTERVENCION
+-- 7. FIELD INTERVENTION
 CREATE TABLE intervencion (
     id_intervencion INT AUTO_INCREMENT PRIMARY KEY,
     tipo_intervencion ENUM('FUMIGACION', 'LARVICIDA', 'CONTROL_FISICO') NOT NULL,
