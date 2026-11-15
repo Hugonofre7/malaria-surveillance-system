@@ -1,10 +1,13 @@
 from fastapi import FastAPI
+from .routers import casos
 
 app = FastAPI(
     title="Malaria Surveillance API",
     description="REST API for Epidemiological Surveillance of Malaria (Guerrero, Mexico)",
     version="1.0.0"
 )
+
+app.include_router(casos.router)
 
 @app.get("/")
 def read_root():
