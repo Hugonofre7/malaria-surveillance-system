@@ -1,5 +1,10 @@
 from fastapi import FastAPI
-from .routers import casos
+from app import models
+from app.database import Base, engine
+from app.routers import casos
+
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Malaria Surveillance API",
